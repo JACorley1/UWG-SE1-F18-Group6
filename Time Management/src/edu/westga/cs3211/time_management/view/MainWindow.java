@@ -17,11 +17,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /** Codebehind for the MainWindow Scene.
  * 
@@ -86,6 +88,30 @@ public class MainWindow {
 
         this.calendar = new Calendar();
         this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+        
+        this.setListDisplayTextOfEventItems();
+        
     }
+    
+    private void setListDisplayTextOfEventItems() {
+    	this.eventList.setCellFactory(new Callback<ListView<Event>, ListCell<Event>>() {
+            @Override
+            public ListCell<Event> call(ListView<Event> param) {
+                 ListCell<Event> cell = new ListCell<Event>() {
+                     @Override
+                    protected void updateItem(Event item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if(item != null) {
+                            setText(item.getName());
+                        } else {
+                            setText(null);
+                        }
+                    }
+                 };
+                return cell;
+            }
+        });
+    }
+    
 }
 
