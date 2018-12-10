@@ -160,7 +160,8 @@ public class Event {
 	 */
 	@Override
 	public String toString() {
-		return this.name + "(" + this.startTime + "," + this.endTime + ")";
+		//return this.name + "(" + this.startTime + "," + this.endTime + ")";
+		return this.name;
 	}
 	
 	/** Generate a multi-line full string representation of the event.

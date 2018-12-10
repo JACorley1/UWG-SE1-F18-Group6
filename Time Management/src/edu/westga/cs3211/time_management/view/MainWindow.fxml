@@ -17,7 +17,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="306.0" layoutY="38.0" text="Event Name">
+      <Label fx:id="eventNameLabel" layoutX="306.0" layoutY="38.0" text="Event Name">
          <font>
             <Font size="22.0" />
          </font>
@@ -77,6 +77,6 @@
          </font>
       </Label>
       <Button layoutX="14.0" layoutY="561.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="268.0" text="Add Event" />
-      <Button layoutX="293.0" layoutY="561.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="280.0" text="Delete Event" />
+      <Button fx:id="deleteButton" layoutX="293.0" layoutY="561.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="280.0" text="Delete Event" />
    </children>
 </AnchorPane>
