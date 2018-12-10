@@ -92,10 +92,6 @@ public class AddEvent {
     	}
     	
     	LocalDateTime endTime = LocalDateTime.of(this.endTimeDate.getValue(), LocalTime.of(23, 0));
-    	System.out.println(this.startTimeDate.getValue());
-    	System.out.println(LocalTime.of(9, 0));
-    	System.out.println(startTime);
-    	System.out.println(endTime);
     	if(!EventDataValidator.checkStartTime(startTime)) {
     		errorText += "Start time is invalid" + System.lineSeparator();
     	}
@@ -168,8 +164,21 @@ public class AddEvent {
         this.visibilityList.setValue(Visibility.PUBLIC);
         this.startTimeDate.setValue(LocalDate.now());
         this.endTimeDate.setValue(LocalDate.now());
+        
+        this.setEnforcementOfTextLength(this.nameText, 32);
+        this.setEnforcementOfTextLength(this.locationText, 64);
     }
 
+    private void setEnforcementOfTextLength(TextField field, int maxLength) {
+    	field.setOnKeyTyped(event -> {
+            String string = field.getText();
+            if (string.length() > maxLength) {
+            	field.setText(string.substring(0, maxLength));
+            	field.positionCaret(string.length());
+            }
+        });
+	}
+    
 	public void setCalendar(Calendar calendar) {
 		if(calendar == null) {
 			throw new IllegalArgumentException("Calendar provided was null");

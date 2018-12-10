@@ -142,8 +142,6 @@ public class MainWindow {
 		this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
 
 		this.setListDisplayTextOfEventItems();
-		// this.eventList.itemsProperty().isNotNull()
-		System.out.println(deleteButton);
 		this.deleteButton.disableProperty().bind(this.eventList.getSelectionModel().selectedItemProperty().isNull());
 		
 	}
