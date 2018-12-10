@@ -85,13 +85,22 @@ public class AddEvent {
     	if(!EventDataValidator.checkName(name)) {
     		errorText += "Name is invalid" + System.lineSeparator();
     	}
-    	LocalDateTime startTime = LocalDateTime.of(this.startTimeDate.getValue(), LocalTime.of(9, 0));
-    	LocalDateTime endTime = LocalDateTime.of(this.endTimeDate.getValue(), LocalTime.of(5, 0));
+    	
+    	LocalDateTime startTime = LocalDateTime.of(this.startTimeDate.getValue(), LocalTime.of(0, 0));
+    	if(startTime.getDayOfMonth()==LocalDateTime.now().getDayOfMonth()) {
+    		startTime = LocalDateTime.now();
+    	}
+    	
+    	LocalDateTime endTime = LocalDateTime.of(this.endTimeDate.getValue(), LocalTime.of(23, 0));
+    	System.out.println(this.startTimeDate.getValue());
+    	System.out.println(LocalTime.of(9, 0));
+    	System.out.println(startTime);
+    	System.out.println(endTime);
     	if(!EventDataValidator.checkStartTime(startTime)) {
     		errorText += "Start time is invalid" + System.lineSeparator();
     	}
-    	else if(!EventDataValidator.checkStartTime(endTime)) {
-    		errorText += "Start time is invalid" + System.lineSeparator();
+    	if(!EventDataValidator.checkEndTime(startTime, endTime)) {
+    		errorText += "End time is invalid" + System.lineSeparator();
     	}
     	List<String> attendees = this.attendeesList.getItems();
     	if(!EventDataValidator.checkAttendees(attendees)) {

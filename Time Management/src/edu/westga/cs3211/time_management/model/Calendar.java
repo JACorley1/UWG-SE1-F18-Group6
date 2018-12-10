@@ -46,6 +46,16 @@ public class Calendar {
 		this.events.add(event);
 	}
 	
+	public void deleteEvent(Event event) {
+		if (event == null) {
+			throw new IllegalArgumentException("Event cannot be null");
+		}
+		
+		if(this.events.contains(event)) {
+			this.events.remove(event);
+		}
+	}
+	
 	/** Finds and returns the list of events in the calendar that would conflict with the specified event
 	 * 
 	 * @precondition event != null

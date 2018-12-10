@@ -2,6 +2,7 @@ package edu.westga.cs3211.time_management.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import edu.westga.cs3211.time_management.Main;
@@ -13,6 +14,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -28,7 +32,7 @@ public class MainWindow {
     @FXML private ResourceBundle resources;
     @FXML private URL location;
     @FXML private ListView<Event> eventList;
-    @FXML private TextArea eventDetailsText;
+    @FXML private TextArea descriptionText;
     
     private Calendar calendar;
 
@@ -51,17 +55,34 @@ public class MainWindow {
     }
     
     @FXML
+    void deleteEvent(ActionEvent event) {
+    	Event selectedEvent = this.eventList.getSelectionModel().getSelectedItem();
+    	if(selectedEvent!=null) {
+	    	Alert alert = new Alert(AlertType.CONFIRMATION);
+	    	alert.setTitle("Confirmation Dialog");
+	    	alert.setHeaderText("Delete This Event?");
+	    	alert.setContentText(selectedEvent.toStringFull());
+	
+	    	Optional<ButtonType> result = alert.showAndWait();
+	    	if (result.get() == ButtonType.OK){
+	    	    this.calendar.deleteEvent(selectedEvent);
+	    	    this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+	    	}
+    	}
+    }
+    
+    @FXML
     void selectEvent(MouseEvent event) {
     	Event eventSelected = this.eventList.getSelectionModel().getSelectedItem();
     	if(eventSelected != null) {
-    		this.eventDetailsText.setText(eventSelected.toStringFull());
+    		this.descriptionText.setText(eventSelected.toStringFull());
     	}
     }
 
     @FXML
     void initialize() {
         assert eventList != null : "fx:id=\"eventList\" was not injected: check your FXML file 'MainWindow.fxml'.";
-        assert eventDetailsText != null : "fx:id=\"eventDetailsText\" was not injected: check your FXML file 'MainWindow.fxml'.";
+        assert descriptionText != null : "fx:id=\"eventDetailsText\" was not injected: check your FXML file 'MainWindow.fxml'.";
 
         this.calendar = new Calendar();
         this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));

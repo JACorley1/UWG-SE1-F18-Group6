@@ -12,7 +12,6 @@
 <AnchorPane minHeight="600.0" minWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.time_management.view.MainWindow">
    <children>
       <ListView fx:id="eventList" layoutX="14.0" layoutY="38.0" onMouseClicked="#selectEvent" prefHeight="510.0" prefWidth="268.0" />
-      <Button layoutX="14.0" layoutY="561.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="268.0" text="Add Event" />
       <Label layoutX="102.0" layoutY="6.0" text="Event List">
          <font>
             <Font size="22.0" />
@@ -23,7 +22,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="306.0" layoutY="93.0" prefHeight="25.0" prefWidth="103.0" text="DateTime">
+      <Label fx:id="startTimeLabel" layoutX="301.0" layoutY="81.0" prefHeight="25.0" prefWidth="118.0" text="StartDateTime">
          <font>
             <Font size="16.0" />
          </font>
@@ -31,7 +30,7 @@
             <Tooltip text="Empty Tooltip" />
          </tooltip>
       </Label>
-      <Label layoutX="373.0" layoutY="150.0" text="Label">
+      <Label fx:id="locationLabel" layoutX="401.0" layoutY="150.0" text="LocationData">
          <font>
             <Font size="16.0" />
          </font>
@@ -46,12 +45,12 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="296.0" layoutY="536.0" text="Event Sharing Visibility:">
+      <Label layoutX="293.0" layoutY="515.0" text="Event Sharing Visibility:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="437.0" layoutY="93.0" prefHeight="25.0" prefWidth="103.0" text="DateTime">
+      <Label fx:id="endTimeLabel" layoutX="479.0" layoutY="81.0" prefHeight="25.0" prefWidth="103.0" text="EndDateTime">
          <font>
             <Font size="16.0" />
          </font>
@@ -59,23 +58,25 @@
             <Tooltip text="The End time of this event if specified" />
          </tooltip>
       </Label>
-      <Label layoutX="411.0" layoutY="93.0" text="To">
+      <Label layoutX="439.0" layoutY="81.0" text="To">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
       <Line endX="193.0" layoutX="383.0" layoutY="197.0" startX="-86.0" />
-      <TextArea editable="false" layoutX="297.0" layoutY="226.0" prefHeight="213.0" prefWidth="280.0" />
-      <Label layoutX="306.0" layoutY="150.0" text="Location">
+      <TextArea fx:id="descriptionText" editable="false" layoutX="297.0" layoutY="226.0" prefHeight="213.0" prefWidth="280.0" />
+      <Label layoutX="306.0" layoutY="150.0" prefHeight="25.0" prefWidth="81.0" text="Location:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <ListView layoutX="297.0" layoutY="468.0" prefHeight="40.0" prefWidth="280.0" />
-      <Label layoutX="495.0" layoutY="536.0" text="Label">
+      <ListView fx:id="attendeesList" layoutX="297.0" layoutY="468.0" prefHeight="40.0" prefWidth="280.0" />
+      <Label layoutX="492.0" layoutY="515.0" text="Label">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
+      <Button layoutX="14.0" layoutY="561.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="25.0" prefWidth="268.0" text="Add Event" />
+      <Button layoutX="293.0" layoutY="561.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="280.0" text="Delete Event" />
    </children>
 </AnchorPane>
